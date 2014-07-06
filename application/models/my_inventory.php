@@ -7,6 +7,10 @@ class MY_inventory extends CI_Controller
         parent::__construct();
     }
 
+    /*
+     * add()
+     * @params 0
+     */
     function add()
     {
         $data = array(
@@ -25,6 +29,10 @@ class MY_inventory extends CI_Controller
         }
     }
 
+    /*
+     * delete()
+     * @params $id
+     */
     function delete($id)
     {
         //delete files
@@ -45,6 +53,10 @@ class MY_inventory extends CI_Controller
         $this->db->delete('upload',array('inventory_id'=>$id));
     }
 
+    /*
+     * edit()
+     * @params $id
+     */
     function edit($id)
     {
         $data = array(

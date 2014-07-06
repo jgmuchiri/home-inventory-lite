@@ -1,22 +1,27 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class home extends CI_Controller {
+class home extends CI_Controller
+{
     function __construct()
     {
         parent::__construct();
+
+        // set session cookie to redirect here
         $this->conf->setRedirect();
 
     }
-function page($page){
-    return $this->load->view($page);
-}
-function index()
-	{
-        $this->page('inc/header');
-        $this->load->view('index');
-        $this->page('inc/footer');
 
-	}
+    /*
+     * index()
+     * @params 0
+     */
+    function index()
+    {
+        $this->load->view('inc/header');
+        $this->load->view('index');
+        $this->load->view('inc/footer');
+
+    }
 }
 
 /* End of file welcome.php */

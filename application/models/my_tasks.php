@@ -6,6 +6,10 @@ class MY_tasks extends CI_Controller
     {
         parent::__construct();
     }
+    /*
+     * add()
+     * @params 0
+     */
     function add(){
         $data = array(
             'name'  => $this->input->post("task_name")
@@ -18,6 +22,10 @@ class MY_tasks extends CI_Controller
             redirect('tasks');
         }
     }
+    /*
+     * delete()
+     * @params $id
+     */
     function delete($id){
         if($id !==""){
             $data=array('id'=>$id);

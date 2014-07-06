@@ -12,39 +12,53 @@ class Notes extends CI_Controller
 
     }
 
-    function page($page)
-    {
-        return $this->load->view($page);
-    }
-
-    function notesData($id = 1)
+    /*
+     * define database tables for reuse in this instance
+     */
+    function notesData($id = 0)
     {
         $data['thisNote']   = $this->db->query("SELECT * FROM notes WHERE id={$id}");
         $data['notes_list'] = $this->db->query('SELECT * FROM notes');
         return $data;
     }
 
+    /*
+     * index()
+     * @params 0
+     */
     function index()
     {
-        $this->page('inc/header');
+        $this->load->view('inc/header');
         $data['notes_list'] = $this->notes;
         $this->load->view('apps/notes/index', $data);
-        $this->page('inc/footer');
+        $this->load->view('inc/footer');
     }
 
+    /*
+     * view()
+     *@ params $id
+     * if id is 0 display all notes else, display the note with the id
+     **/
     function view($id = 0)
     {
         $data = $this->notesData($id);
         $this->load->view('apps/notes/view', $data);
     }
 
+    /*
+     * newNote()
+     * new note form
+     */
     function newNote()
     {
         $data = $this->notesData();
         $this->load->view('apps/notes/create', $data);
     }
 
-
+    /*
+     * create()
+     * create note with validation
+     */
     function create()
     {
         $this->form_validation->set_rules('title', 'Title', 'required');
@@ -53,11 +67,16 @@ class Notes extends CI_Controller
             $this->my_notes->add();
         } else {
             $this->conf->msg('danger', 'Error! Missing required fields.');
-
         }
-        $this->conf->redirectPrev();
+
+        $this->conf->redirectPrev(); // redirect to previous page
     }
 
+    /*
+     * edit()
+     * @params $id
+     * edit individual note
+     */
     function edit($id = 0)
     {
         $data = $this->notesData($id);
@@ -71,9 +90,14 @@ class Notes extends CI_Controller
         }
     }
 
+    /*
+     * delete()
+     * delete note(s)
+     */
     function delete($id = "")
     {
         $this->my_notes->delete($id);
+        //redirect
         $this->conf->redirectPrev();
     }
 }

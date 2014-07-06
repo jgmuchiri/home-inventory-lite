@@ -2,7 +2,7 @@
 foreach ($thisNote->result() as $row) {
     echo '<h3>' . $row->title . '</h3>
                 <div style="float:right">
-                    <a class="edit-note" id="'.$row->id.'" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a class="edit-note" id="' . $row->id . '" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
                     &nbsp;&nbsp;
                     <a href="' . site_url('notes/delete/' . $row->id) . '"><span class="glyphicon glyphicon-trash"></span></a>
                 </div>

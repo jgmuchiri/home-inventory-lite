@@ -7,19 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico">
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.ico">
 
-    <title><?php
+    <title>
+        <?php
         echo $this->config->item('site_name');
-        ?></title>
+        ?>
+    </title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="<?php echo base_url(); ?>assets/css/dashboard.css" rel="stylesheet">
-
-
+    <?php
+    //stylesheets
+    $styles = array(
+        'bootstrap',
+        'dashboard'
+    );
+    foreach($styles as $style){
+       echo link_tag(base_url().'assets/css/'.$style.'.css');
+    }
+    ?>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -36,13 +41,13 @@
 
 <div class="container-fluid"><!--container-->
     <div class="row">
-        <?php //$this->load->view("inc/sidebar"); ?>
         <div class="main">
 
             <a class="navbar-brand" style="background: #fff; color: #3cc" href="<?php echo base_url(); ?>">
                 <span class="glyphicon glyphicon-home"><?php
                     echo $this->config->item('site_name');
                     ?></span></a>
+
             <div class="clearfix"></div>
 
             <?php $this->load->view('inc/nav'); ?>

@@ -2,7 +2,13 @@
 
 class Conf extends CI_Model
 {
-    // set redirect
+    /*
+     * setRedirect()
+     * @params 0
+     * set redirect session
+     * to set controller page for redirect use $this->conf->setRedirect();
+     **/
+
     function setRedirect()
     {
         if (isset($_SERVER['HTTP_REFERER'])) {
@@ -10,22 +16,32 @@ class Conf extends CI_Model
         } else {
             $this->session->set_userdata('last_page', base_url());
         }
-        //redirect($this->session->userdata('last_page'));
     }
 
-    //redirect to previous
+    /*
+     * redirectPrev()
+     * @params 0
+     * redirect to prev
+     */
     function redirectPrev()
     {
         redirect($this->session->userdata('last_page'));
     }
 
-    //call status messages
+    /*
+     * msg()
+     * @params $type, $msg
+     * call status messages
+     */
     function msg($type, $msg)
     {
         $this->session->set_flashdata('result', '<p id="msg" class="alert alert-' . $type . '">' . $msg . '</p>');
     }
 
-    /* Check whether user is logged in to access current resource
+    /*
+     * isLoggedIn()
+     * @params 0
+       * Check whether user is logged in to access current resource
        * return TRUE if logged in else FALSE
        */
     function isLoggedIn()
@@ -38,16 +54,22 @@ class Conf extends CI_Model
         }
     }
 
+    /*
+     * editor()
+     * load niceEdit to a div
+     * @params $div
+     * may not be compatible with some javascripts
+     */
     function  editor($div)
     {
-        $base = base_url();
+        $editorLocation=base_url().'assets/plugins/niceEdit';
 
-        $js = "<script type='text/javascript' src='{$base}assets/js/nicEdit.js'>
+        $js = "<script type='text/javascript' src='{$editorLocation}/nicEdit.js'>
              </script>
                 <script type='text/javascript'>
                 //<![CDATA[
                 bkLib.onDomLoaded(function() {
-                    new nicEditor({iconsPath : '{$base}assets/img/nicEditorIcons.gif'
+                    new nicEditor({iconsPath : '{$editorLocation}/nicEditorIcons.gif'
                 }).panelInstance($div);
             });
             //]]>

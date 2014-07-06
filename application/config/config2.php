@@ -1,14 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 # Site name
-$config['site_name']='myHome';
+$config['site_name']='InventoryPro';
 
-# Enable login
-$config['auth']=FALSE;
-
-# Enable multiple users
-$config['multi_users']=FALSE;
-
-#inventory
+#inventory locations
 $config['location']=array(
     'Living Room',
     'Kitchen',

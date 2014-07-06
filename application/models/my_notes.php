@@ -6,41 +6,59 @@ class MY_notes extends CI_Controller
     {
         parent::__construct();
     }
-    function add(){
+
+    /*
+     * add()
+     * $params 0
+     */
+    function add()
+    {
         $data = array(
-            'title'  => $this->input->post("title"),
-            'content'  => $this->input->post("content"),
-            'date'  => time()
+            'title'   => $this->input->post("title"),
+            'content' => $this->input->post("content"),
+            'date'    => time()
         );
-        if($this->db->insert('notes',$data)){
-           $this->conf->msg('success','Note created');
-        }else{
-            $this->conf->msg('danger','Error creating note');
+        if ($this->db->insert('notes', $data)) {
+            $this->conf->msg('success', 'Note created');
+        } else {
+            $this->conf->msg('danger', 'Error creating note');
         }
         redirect('notes');
     }
-    function delete($id){
-        if($id !==""){
-            $data=array('id'=>$id);
 
-            $this->db->where('id',$id);
-            if($this->db->delete('notes',$data)){
-                $this->conf->msg('success','Note deleted!');
-            }else{
-                $this->conf->msg('danger','Error deleting note');
+    /*
+     * delete()
+     * $params $id
+     */
+    function delete($id)
+    {
+        if ($id !== "") {
+            $data = array('id' => $id);
+
+            $this->db->where('id', $id);
+            if ($this->db->delete('notes', $data)) {
+                $this->conf->msg('success', 'Note deleted!');
+            } else {
+                $this->conf->msg('danger', 'Error deleting note');
             }
         }
     }
-    function edit($id){
+
+    /*
+     * edit()
+     * $params $id
+     */
+    function edit($id)
+    {
         $data = array(
-            'title'  => $this->input->post("title"),
-            'content'  => $this->input->post("content")
+            'title'   => $this->input->post("title"),
+            'content' => $this->input->post("content")
         );
-        $this->db->where('id',$id);
-        if($this->db->update('notes',$data)){
-            $this->conf->msg('success','Note updated');
-        }else{
-            $this->conf->msg('danger','Error updating note');
+        $this->db->where('id', $id);
+        if ($this->db->update('notes', $data)) {
+            $this->conf->msg('success', 'Note updated');
+        } else {
+            $this->conf->msg('danger', 'Error updating note');
         }
         redirect('notes');
     }
