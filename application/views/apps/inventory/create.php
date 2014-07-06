@@ -1,3 +1,4 @@
+
 <?php echo form_open('inventory/add'); ?>
 
     <input style="width:220px" class="form-control" type="text" name="item" placeholder="Item name"/>
